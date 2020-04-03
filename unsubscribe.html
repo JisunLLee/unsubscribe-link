@@ -2,16 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>[DuelNet]Email 수신거부</title>
+
+    <title id="title">[DuelNet]Email unsubscribe</title>
 </head>
 <body>
-    수신 거부하시겠습니까?
-    <button id="btn_unsubscribe" onClick="unsubscribe()" type="button"> 수신거부 </button>
+    <p id="content">Are you sure unsubscribe?</p>
+    <button id="btn_unsubscribe" onClick="unsubscribe()" type="button"> unsubscribe </button>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 
+
 <script>
-function unsubscribe() {
-    alert("click unsubscribe");
-}
+    function unsubscribe() {
+        const id = searchParam('id');
+        alert("id : "+ id);
+
+        const url = 'http://13.125.164.37:24000/email/subscribe';
+        const data = {
+          "email":"lucia2@test.com",
+          "subscribe":true
+        };
+
+        fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+    }
+    function searchParam(key) {
+      return new URLSearchParams(location.search).get(key);
+    }
+
 </script>
 </html>

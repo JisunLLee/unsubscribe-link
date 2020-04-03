@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title id="title">hi</title>
+</head>
+<body>
+<p id="content">r</p>
+<button id="btn_unsubscribe" onClick="unsubscribe()" type="button"> 수신거부 </button>
+
+<script>
+  let userLang = navigator.language;
+
+  switch (userLang) {
+    case "ko-KR":
+    case "ko":
+      userLang = "ko";
+      break;
+    case "en-US":
+    case "en":
+      userLang = "en";
+      break;
+    case "id-ID":
+    case "id":
+      userLang = "id";
+      break;
+    default: userLang = "en";
+  }
+
+  lang = {
+    lng: "en",
+    debug: true,
+    resources: {
+      ko: {
+        translation: {
+          title: "[DuelNet] Email 수신거부",
+          content: "정말 수신거부 하시겠습니까?",
+          btn_unsubscribe: "수신거부"
+        }
+      },
+      en: {
+        translation: {
+           title: "[DuelNet] Email unsubscribe",
+           content: "Are you sure unsubscribe?",
+           btn_unsubscribe: "unsubscribe"
+        }
+      },
+      id: {
+        translation: {
+           title: "[DuelNet] Berhenti berlangganan email",
+            content: "Apakah Anda ingin berhenti berlangganan?",
+            btn_unsubscribe: "Memantul"
+        }
+      }
+    }
+   };
+
+  updateContent(userLang);
+  function updateContent(userLang) {
+    document.getElementById("title").innerHTML = lang.resources[userLang].translation.title;
+    document.getElementById("content").innerHTML = lang.resources[userLang].translation.content;
+    document.getElementById("btn_unsubscribe").innerHTML = lang.resources[userLang].translation.btn_unsubscribe;
+  }
+</script>
+</body>
+</html>

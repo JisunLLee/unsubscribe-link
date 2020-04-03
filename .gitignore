@@ -1,1 +1,4 @@
 .idea
+node_modules
+config/jwt.js
+package-lock.json
